@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 import axios from 'axios'
 import './style.css'
+import Title from "../Title/Title";
 
 export default function Home() {
     
@@ -18,14 +19,12 @@ export default function Home() {
     
     return (
         <>
-            <div className="title">
-                <p>Selecione o Filme</p>
-            </div>
+            <Title text='Selecione o Filme' />
             <div className="movies">
                 {movies.map((movie) =>
                     <Link to={`/sessoes/${movie.id}`} key={movie.id} >
                         <div className="movie" >
-                            <img className="poster" src={movie.posterURL} />
+                            <img className="poster" src={movie.posterURL} alt="filme" />
                         </div>
                     </Link>
                 )}

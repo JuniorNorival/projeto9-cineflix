@@ -3,15 +3,16 @@ import { useParams, Link } from "react-router-dom"
 import axios from 'axios'
 import './style.css'
 import styled from "styled-components"
+import Title from "../Title/Title"
 
 export default function Movie() {
 
     const [movie, setmovie] = useState([])
 
-    const { idmovie } = useParams();
+    const { idFilme } = useParams();
 
 
-    const promisse = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/movies/${idmovie}/showtimes`)
+    const promisse = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/movies/${idFilme}/showtimes`)
 
     useEffect(() => {
         promisse.then(resposta => {
@@ -27,20 +28,18 @@ export default function Movie() {
 
         return (
             <>
-                <div className="title">
-                    <p>Selecione o horário</p>
-                </div>
+                <Title text='Selecione o horário' />
                 <div className="horarios">
                     {sessions.map((session) => {
                         const times = session.showtimes
                         return (
-                            <div className="sessoes" key = {session.id}>
+                            <div className="sessoes" key={session.id}>
                                 <p>{session.weekday} - {session.date}</p>
                                 {times.map((hour) =>
-                                <Link to ={`/sessao`}>
-                                 <button>{hour.name}</button>
-                                </Link>
-                                   )}
+                                    <Link key={hour.id} to={`/assentos/${hour.id}`}>
+                                        <button>{hour.name}</button>
+                                    </Link>
+                                )}
                             </div>
                         )
                     }
@@ -49,7 +48,7 @@ export default function Movie() {
 
                 <Footer>
                     <DataFooter>
-                        <Imgbox><img src={movie.posterURL} /></Imgbox>
+                        <Imgbox><img src={movie.posterURL} alt="filme"/></Imgbox>
                         <p>{movie.title}</p>
                     </DataFooter>
                 </Footer>
