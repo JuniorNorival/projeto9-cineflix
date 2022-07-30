@@ -29,21 +29,23 @@ export default function Session({ resumo, setResumo }) {
     if (assentos.length > 0) {
         console.log(numPoltrona)
         return (
-            <Container>
-                <Title text='Selecione o(s) assento(s)' />
-                <Assentos>
-                    {assentos.map((assento) =>
-                        <Seats key={assento.id} assento={assento.id} poltrona={poltrona}
-                            setPoltrona={setPoltrona} disponivel={assento.isAvailable}
-                            nome={assento.name} numPoltrona={numPoltrona}
-                            setNumPoltrona={setNumPoltrona} />
+            <>
+                <Container>
+                    <Title text='Selecione o(s) assento(s)' />
+                    <Assentos>
+                        {assentos.map((assento) =>
+                            <Seats key={assento.id} assento={assento.id} poltrona={poltrona}
+                                setPoltrona={setPoltrona} disponivel={assento.isAvailable}
+                                nome={assento.name} numPoltrona={numPoltrona}
+                                setNumPoltrona={setNumPoltrona} />
 
-                    )}
-                    <Legenda />
-                </Assentos>
-                <Form poltrona={poltrona} sessao={sessao} resumo={resumo}
-                    setResumo={setResumo} numPoltrona={numPoltrona} />
+                        )}
+                        <Legenda />
+                    </Assentos>
+                    <Form poltrona={poltrona} sessao={sessao} resumo={resumo}
+                        setResumo={setResumo} numPoltrona={numPoltrona} />
 
+                </Container>
                 <Footer>
                     <DataFooter>
                         <Imgbox><img src={sessao.movie.posterURL} alt="filme" /></Imgbox>
@@ -53,8 +55,7 @@ export default function Session({ resumo, setResumo }) {
                         </div>
                     </DataFooter>
                 </Footer>
-            </Container>
-
+            </>
         )
     }
     return (
@@ -75,7 +76,7 @@ const Assentos = styled.div`
     display: flex;
     flex-wrap:wrap;
     justify-content:center;
-    width:400px;
+    width:325px;
     margin:0 auto;
     
 `
@@ -90,6 +91,7 @@ const Footer = styled.div`
     border: 1px solid #9EADBA;
     display: flex;
     align-items: center;
+    z-index: 1;
 `
 const DataFooter = styled.div`
     display: flex;

@@ -16,8 +16,8 @@ const navigate = useNavigate();
             <BoxDados>
                 <Subtitulo text="Ingressos" />
                 <Dados>
-                    {resumo.numPoltrona.map((num) =>
-                        <p>Assento {num}</p>)}
+                    {resumo.numPoltrona.map((num, index) =>
+                        <p key={index}>Assento {num}</p>)}
                 </Dados>
             </BoxDados>
             <BoxDados>

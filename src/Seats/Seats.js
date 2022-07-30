@@ -31,8 +31,8 @@ export default function Seats({
             return null
         }
         if (poltrona.includes(id)) {
-            setPoltrona(poltrona.filter((item)=> item != id))
-            setNumPoltrona(numPoltrona.filter((item)=> item != nome))
+            setPoltrona(poltrona.filter((item)=> item !== id))
+            setNumPoltrona(numPoltrona.filter((item)=> item !== nome))
             return
         }
 
