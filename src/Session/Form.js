@@ -3,19 +3,23 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function Form(poltrona, sessao) {
+export default function Form({poltrona, sessao, resumo, setResumo, numPoltrona }) {
     
-    const [bname, setBname] = useState('')
+    const [name, setName] = useState('')
     const [cpf, setCpf] = useState('')
     const navigate = useNavigate();
-    const dadosSessao = poltrona.sessao
+   
+    const titulo= sessao.movie.title;
+    const hora = sessao.name
+    const dia = sessao.day.weekday
+    const data = sessao.day.date
 
     function handleForm(e) {
         e.preventDefault();
-        const ids = poltrona.assentos
+        const ids = poltrona
         const escolhido = {
             ids,
-            bname,
+            name,
             cpf
         }
         
@@ -23,11 +27,22 @@ export default function Form(poltrona, sessao) {
         const promisse = axios.post('https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many',
         escolhido)
 
-        promisse.then(()=>navigate ('/sucesso'))
+        promisse.then(()=>{
+            setResumo ({name,
+                cpf,
+                titulo,
+                hora,
+                dia,
+                data,
+                numPoltrona
+
+            })
+            
+            navigate ('/sucesso')})
         
     }
 function resetForm (){
-    setBname('')
+    setName('')
     setCpf('')
 
 }
@@ -37,8 +52,8 @@ function resetForm (){
             <div>
                 <p>Nome do comprador:</p>
                 <Input type='text' id="name" name="name" placeholder="Digite seu nome..."
-                    onChange={e => setBname(e.target.value)}
-                    value={bname}
+                    onChange={e => setName(e.target.value)}
+                    value={name}
                     required />
                 <p>CPF do comprador:</p>
                 <Input type='text' id="cpf" name="cpf"

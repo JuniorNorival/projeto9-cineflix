@@ -5,7 +5,9 @@ export default function Seats({
     poltrona,
     setPoltrona,
     disponivel,
-    nome
+    nome,
+    numPoltrona, 
+    setNumPoltrona
 }) {
 
     let color = "#C3CFD9"
@@ -22,24 +24,25 @@ export default function Seats({
         border = "#7B8B99"
     }
 
-    function choose(id, poltrona, setPoltrona, disponivel) {
+    function choose(id, poltrona, setPoltrona, disponivel,nome) {
 
         if (!disponivel) {
             alert("Assento Indisponível")
             return null
         }
         if (poltrona.includes(id)) {
-
             setPoltrona(poltrona.filter((item)=> item != id))
+            setNumPoltrona(numPoltrona.filter((item)=> item != nome))
             return
         }
 
         setPoltrona([...poltrona, id])
+        setNumPoltrona([...numPoltrona, nome])
     }
 
     return (
         <Poltrona color={color} border={border} key={assento}
-            onClick={() => choose(assento, poltrona, setPoltrona, disponivel)}>
+            onClick={() => choose(assento, poltrona, setPoltrona, disponivel,nome)}>
             {nome}
         </Poltrona>
     )

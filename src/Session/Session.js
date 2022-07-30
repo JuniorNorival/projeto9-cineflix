@@ -7,47 +7,42 @@ import Title from '../Title/Title'
 import Legenda from '../Legenda/Legenda'
 import Seats from "../Seats/Seats";
 
-const assentoSelecionadoStyle = { backgroundColor: "#8DD7CF", border: "1px solid #1AAE9E" };
-const assentoDisponivelStyle = { backgroundColor: "#C3CFD9", border: "1px solid #7B8B99" };
-const assentoIndisponivelStyle = { backgroundColor: "#FBE192", border: "1px solid #F7C52B" };
-
-
-export default function Session() {
+export default function Session({ resumo, setResumo }) {
 
     const [sessao, setSessao] = useState([])
     const { idSessao } = useParams();
     const [poltrona, setPoltrona] = useState([])
-
-
-    
+    const [numPoltrona, setNumPoltrona] = useState([])
 
     useEffect(() => {
         const promisse = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${idSessao}/seats`)
         promisse.then((response) => {
             setSessao(response.data)
+
         })
 
     }, [])
 
     const assentos = sessao.seats || []
-   
+
 
     if (assentos.length > 0) {
-        console.log(poltrona)
+        console.log(numPoltrona)
         return (
             <Container>
                 <Title text='Selecione o(s) assento(s)' />
                 <Assentos>
-                    {assentos.map((assento) => 
-                        <Seats key= {assento.id} assento={assento.id} poltrona={poltrona} 
-                        setPoltrona={setPoltrona} disponivel={assento.isAvailable} 
-                        nome={assento.name}/>
+                    {assentos.map((assento) =>
+                        <Seats key={assento.id} assento={assento.id} poltrona={poltrona}
+                            setPoltrona={setPoltrona} disponivel={assento.isAvailable}
+                            nome={assento.name} numPoltrona={numPoltrona}
+                            setNumPoltrona={setNumPoltrona} />
 
                     )}
-
                     <Legenda />
                 </Assentos>
-                <Form assentos={poltrona} sessao={sessao}></Form>
+                <Form poltrona={poltrona} sessao={sessao} resumo={resumo}
+                    setResumo={setResumo} numPoltrona={numPoltrona} />
 
                 <Footer>
                     <DataFooter>
@@ -84,20 +79,6 @@ const Assentos = styled.div`
     margin:0 auto;
     
 `
-const Poltrona = styled.div`
-    width: 30px;
-    height: 30px;
-    background-color: ${props => props.design.backgroundColor};
-    border: ${props => props.design.border};
-    border-radius: 12px;
-    display: flex;
-    align-items:center;
-    justify-content:center;
-    margin:10px 10px;
-    cursor:pointer;
-
-`
-
 
 const Footer = styled.div`
     width: 100vw;
