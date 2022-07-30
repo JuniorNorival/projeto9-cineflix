@@ -5,27 +5,12 @@ import styled from "styled-components";
 import Form from './Form'
 import Title from '../Title/Title'
 import Legenda from '../Legenda/Legenda'
+import Seats from "../Seats/Seats";
 
 const assentoSelecionadoStyle = { backgroundColor: "#8DD7CF", border: "1px solid #1AAE9E" };
 const assentoDisponivelStyle = { backgroundColor: "#C3CFD9", border: "1px solid #7B8B99" };
 const assentoIndisponivelStyle = { backgroundColor: "#FBE192", border: "1px solid #F7C52B" };
 
-function choose(id, poltrona, setPoltrona, disponivel) {
-
-
-    if (!disponivel) {
-        alert("Assento Indisponível")
-        return null
-    }
-    if (poltrona.includes(id)) {
-
-        poltrona.splice(poltrona.indexOf(id), 1)
-        setPoltrona(poltrona)
-        return
-    }
-
-    setPoltrona([...poltrona,id])
-}
 
 export default function Session() {
 
@@ -45,7 +30,7 @@ export default function Session() {
     }, [])
 
     const assentos = sessao.seats || []
-
+   
 
     if (assentos.length > 0) {
         console.log(poltrona)
@@ -53,32 +38,12 @@ export default function Session() {
             <Container>
                 <Title text='Selecione o(s) assento(s)' />
                 <Assentos>
-                    {assentos.map((assento) => {
+                    {assentos.map((assento) => 
+                        <Seats key= {assento.id} assento={assento.id} poltrona={poltrona} 
+                        setPoltrona={setPoltrona} disponivel={assento.isAvailable} 
+                        nome={assento.name}/>
 
-                        if (!assento.isAvailable) {
-                            return (
-                                <Poltrona design={assentoIndisponivelStyle} key={assento.id}
-                                    onClick={() => choose(assento.id, poltrona, setPoltrona, assento.isAvailable)}>
-                                    {assento.name}
-                                </Poltrona>
-                            )
-                        } else if (poltrona.includes(assento.id)) {
-                            return (
-                                <Poltrona design={assentoSelecionadoStyle} key={assento.id}
-                                    onClick={() => choose(assento.id, poltrona, setPoltrona, assento.isAvailable)}>
-                                    {assento.name}
-                                </Poltrona>
-                            )
-                        } else {
-                            return (
-                                <Poltrona design={assentoDisponivelStyle} key={assento.id}
-                                    onClick={() => choose(assento.id, poltrona, setPoltrona, assento.isAvailable)}>
-                                    {assento.name}
-                                </Poltrona>
-                            )
-                        }
-
-                    })}
+                    )}
 
                     <Legenda />
                 </Assentos>
