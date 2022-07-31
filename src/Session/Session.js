@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
@@ -13,7 +13,7 @@ export default function Session() {
     const { idSessao } = useParams();
     const [poltrona, setPoltrona] = useState([])
     const [numPoltrona, setNumPoltrona] = useState([])
-
+    const navigate = useNavigate();
     useEffect(() => {
         const promisse = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${idSessao}/seats`)
         promisse.then((response) => {
@@ -30,6 +30,8 @@ export default function Session() {
         console.log(numPoltrona)
         return (
             <>
+              <button className="voltar"
+                onClick={()=>navigate(-1)}>Voltar</button>
                 <Container>
                     <Title text='Selecione o(s) assento(s)' />
                     <Assentos>

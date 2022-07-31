@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useParams, Link } from "react-router-dom"
+import { useParams, Link, useNavigate } from "react-router-dom"
 import axios from 'axios'
 import styled from "styled-components"
 import Title from "../Title/Title"
@@ -7,7 +7,7 @@ import Title from "../Title/Title"
 export default function Movie() {
 
     const [movie, setmovie] = useState([])
-
+    const navigate = useNavigate();
     const { idFilme } = useParams();
 
 
@@ -27,6 +27,8 @@ export default function Movie() {
 
         return (
             <>
+            <button className="voltar"
+                onClick={()=>navigate(-1)}>Voltar</button>
                 <Title text='Selecione o horário' />
                 <Horarios>
                     {sessions.map((session) => {
