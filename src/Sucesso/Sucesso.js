@@ -87,7 +87,7 @@ color: #293845;
 `
 
 const Botao = styled.button `
-margin:70px auto;
+margin:15px auto;
 width: 225px;
 height: 42px;
 background: #E8833A;

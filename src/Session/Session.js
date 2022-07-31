@@ -20,7 +20,7 @@ export default function Session() {
             setSessao(response.data)
 
         })
-
+        // eslint-disable-next-line
     }, [])
 
     const assentos = sessao.seats || []
@@ -30,8 +30,8 @@ export default function Session() {
         console.log(numPoltrona)
         return (
             <>
-              <button className="voltar"
-                onClick={()=>navigate(-1)}>Voltar</button>
+                <button className="voltar"
+                    onClick={() => navigate(-1)}>Voltar</button>
                 <Container>
                     <Title text='Selecione o(s) assento(s)' />
                     <Assentos>

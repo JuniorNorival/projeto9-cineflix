@@ -18,6 +18,7 @@ export default function Movie() {
             setmovie(resposta.data)
 
         })
+        // eslint-disable-next-line
     }, [])
 
     const sessions = movie.days || []
@@ -27,8 +28,8 @@ export default function Movie() {
 
         return (
             <>
-            <button className="voltar"
-                onClick={()=>navigate(-1)}>Voltar</button>
+                <button className="voltar"
+                    onClick={() => navigate(-1)}>Voltar</button>
                 <Title text='Selecione o horário' />
                 <Horarios>
                     {sessions.map((session) => {
