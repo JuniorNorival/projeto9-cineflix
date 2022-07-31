@@ -60,7 +60,7 @@ text-align: center;
 letter-spacing: 0.04em;
 color: #247A6B;
 height: 110px;
-margin-top:35px;
+margin-top:100px;
 `
 
 const Sub = styled.p`

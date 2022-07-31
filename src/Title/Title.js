@@ -8,7 +8,7 @@ export default function Title({ text }) {
 }
 
 const Heading = styled.div`
-    margin: 40px auto 25px auto;
+    margin: 45px auto 25px auto;
     font-weight: 400;
     font-size: 24px;
     line-height: 28px;

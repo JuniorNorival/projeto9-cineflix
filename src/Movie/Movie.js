@@ -28,8 +28,8 @@ export default function Movie() {
 
         return (
             <>
-                <button className="voltar"
-                    onClick={() => navigate(-1)}>Voltar</button>
+                <ion-icon onClick={() => navigate(-1)}
+                    name="arrow-back-circle-sharp"></ion-icon>
                 <Title text='Selecione o horário' />
                 <Horarios>
                     {sessions.map((session) => {
@@ -135,11 +135,15 @@ const Footer = styled.div`
 const DataFooter = styled.div`
     display: flex;
     align-items: center;
-
+    
+    
 p{
     font-weight: 400;
     font-size: 26px;
     line-height: 30px;
+    color: #293845;
+    
+
 }
 
 `

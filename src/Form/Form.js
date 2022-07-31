@@ -57,7 +57,7 @@ export default function Form({ poltrona, sessao, numPoltrona }) {
         setCpf('')
 
     }
-
+    poltrona.map (()=>console.log('olha eu'))
     return (
         <Forms onSubmit={handleForm}>
             <div>
@@ -100,7 +100,7 @@ button {
     line-height: 21px;
     letter-spacing: 0.04em;
     color: #FFFFFF;
-
+    border:none;
 }
 button:hover {
     background-color: #da6818;

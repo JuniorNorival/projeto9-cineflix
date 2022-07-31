@@ -14,6 +14,7 @@ export default function Session() {
     const [poltrona, setPoltrona] = useState([])
     const [numPoltrona, setNumPoltrona] = useState([])
     const navigate = useNavigate();
+    
     useEffect(() => {
         const promisse = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${idSessao}/seats`)
         promisse.then((response) => {
@@ -30,8 +31,9 @@ export default function Session() {
         console.log(numPoltrona)
         return (
             <>
-                <button className="voltar"
-                    onClick={() => navigate(-1)}>Voltar</button>
+                <ion-icon onClick={() => navigate(-1)}  
+                name="arrow-back-circle-sharp"></ion-icon> 
+                    
                 <Container>
                     <Title text='Selecione o(s) assento(s)' />
                     <Assentos>
