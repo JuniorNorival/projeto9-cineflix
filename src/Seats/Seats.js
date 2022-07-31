@@ -27,7 +27,7 @@ export default function Seats({
     function choose(id, poltrona, setPoltrona, disponivel,nome) {
 
         if (!disponivel) {
-            alert("Assento Indisponível")
+            alert("Esse assento não está disponível")
             return null
         }
         if (poltrona.includes(id)) {
@@ -49,15 +49,15 @@ export default function Seats({
 }
 
 const Poltrona = styled.div`
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     background-color: ${props => props.color};
     border: ${props => props.border};
-    border-radius: 12px;
+    border-radius: 15px;
     display: flex;
     align-items:center;
     justify-content:center;
-    margin:10px 10px;
+    margin:10px 5px;
     cursor:pointer;
 
 `

@@ -2,12 +2,12 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import Form from './Form'
+import Form from '../Form/Form'
 import Title from '../Title/Title'
 import Legenda from '../Legenda/Legenda'
 import Seats from "../Seats/Seats";
 
-export default function Session({ resumo, setResumo }) {
+export default function Session() {
 
     const [sessao, setSessao] = useState([])
     const { idSessao } = useParams();
@@ -42,8 +42,7 @@ export default function Session({ resumo, setResumo }) {
                         )}
                         <Legenda />
                     </Assentos>
-                    <Form poltrona={poltrona} sessao={sessao} resumo={resumo}
-                        setResumo={setResumo} numPoltrona={numPoltrona} />
+                    <Form poltrona={poltrona} sessao={sessao} numPoltrona={numPoltrona} />
 
                 </Container>
                 <Footer>
@@ -69,6 +68,7 @@ const Container = styled.div`
     display:flex;
     flex-direction: column;
     align-items:center;
+    margin-bottom: 130px;
     overflow:scroll;
     
 `
@@ -76,7 +76,7 @@ const Assentos = styled.div`
     display: flex;
     flex-wrap:wrap;
     justify-content:center;
-    width:325px;
+    width:375px;
     margin:0 auto;
     
 `

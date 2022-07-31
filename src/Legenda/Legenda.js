@@ -19,7 +19,7 @@ export default function Legenda() {
 }
 
 const Subtitle = styled.div`
-    margin:20px auto;
+    margin:20px auto 65px auto;
     width: 400px;
     display:flex;
     justify-content:space-around;

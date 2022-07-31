@@ -1,6 +1,10 @@
 import styled from "styled-components"
-import { useNavigate } from "react-router-dom"
-export default function Sucesso({ resumo }) {
+import { useLocation, useNavigate } from "react-router-dom"
+export default function Sucesso() {
+
+const {state} = useLocation();
+console.log(state)
+const resumo = state.resumo
 const navigate = useNavigate();
     return (
         <Container>
@@ -45,6 +49,8 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
+width:300px;
+margin: 0 auto;
 `
 const Title = styled.div`
 font-weight: 700;
@@ -63,11 +69,12 @@ font-size: 24px;
 line-height: 28px;
 letter-spacing: 0.04em;
 color: #293845;
+margin-bottom: 10px;
 
 `
 const BoxDados = styled.div`
 
-width: 374px;
+width: 100%;
 margin: 20px auto;
 `
 const Dados = styled.div`
@@ -80,6 +87,7 @@ color: #293845;
 `
 
 const Botao = styled.button `
+margin:70px auto;
 width: 225px;
 height: 42px;
 background: #E8833A;

@@ -3,49 +3,60 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function Form({poltrona, sessao, resumo, setResumo, numPoltrona }) {
-    
+export default function Form({ poltrona, sessao, numPoltrona }) {
+
     const [name, setName] = useState('')
     const [cpf, setCpf] = useState('')
     const navigate = useNavigate();
-   
-    const titulo= sessao.movie.title;
+
+    const titulo = sessao.movie.title;
     const hora = sessao.name
     const dia = sessao.day.weekday
     const data = sessao.day.date
 
+    const resumo = ({
+        name,
+        cpf,
+        titulo,
+        hora,
+        dia,
+        data,
+        numPoltrona
+
+    })
+
     function handleForm(e) {
         e.preventDefault();
-        const ids = poltrona
-        const escolhido = {
-            ids,
-            name,
-            cpf
+        
+        if (poltrona.length > 0) {
+            const ids = poltrona
+            const escolhido = {
+                ids,
+                name,
+                cpf
+            }
+
+            resetForm();
+            const promisse = axios.post('https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many',
+                escolhido)
+
+            promisse.then(() => navigate('/sucesso', { state: { resumo } }))
+            promisse.catch(() => {navigate('/')
+            alert('Faltou alguma coisa') })
+
+        } else {
+            alert('Escolha ao menos um assento')
         }
-        
-        resetForm();
-        const promisse = axios.post('https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many',
-        escolhido)
 
-        promisse.then(()=>{
-            setResumo ({name,
-                cpf,
-                titulo,
-                hora,
-                dia,
-                data,
-                numPoltrona
 
-            })
-            
-            navigate ('/sucesso')})
-        
+
     }
-function resetForm (){
-    setName('')
-    setCpf('')
 
-}
+    function resetForm() {
+        setName('')
+        setCpf('')
+
+    }
 
     return (
         <Forms onSubmit={handleForm}>
@@ -109,6 +120,8 @@ const Input = styled.input`
     background-color: #FFFFFF;
     border: 1px solid #D5D5D5;
     border-radius: 3px;
+    margin: 10px auto;
+
 ::placeholder {
     font-weight: 400;
     font-size: 18px;
