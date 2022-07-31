@@ -48,8 +48,6 @@ export default function Form({ poltrona, sessao, numPoltrona }) {
             alert('Escolha ao menos um assento')
         }
 
-
-
     }
 
     function resetForm() {
@@ -57,7 +55,7 @@ export default function Form({ poltrona, sessao, numPoltrona }) {
         setCpf('')
 
     }
-    poltrona.map (()=>console.log('olha eu'))
+    
     return (
         <Forms onSubmit={handleForm}>
             <div>
@@ -82,7 +80,6 @@ const Forms = styled.form`
     display: flex;
     flex-direction:column;
     align-items:center;
-
 p{
     font-weight: 400;
     font-size: 18px;
@@ -107,7 +104,6 @@ button:hover {
     box-shadow: 0 5px 0 #c55403;
     cursor: pointer
 }
-
 button:active{
     position:relative;
     top:5px;
@@ -121,13 +117,10 @@ const Input = styled.input`
     border: 1px solid #D5D5D5;
     border-radius: 3px;
     margin: 10px auto;
-
 ::placeholder {
     font-weight: 400;
     font-size: 18px;
     line-height: 21px;
     color: #AFAFAF;
-
-
 }
 `

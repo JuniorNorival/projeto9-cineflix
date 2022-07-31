@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 export default function Sucesso() {
 
 const {state} = useLocation();
-console.log(state)
+
 const resumo = state.resumo
 const navigate = useNavigate();
     return (

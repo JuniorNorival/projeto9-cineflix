@@ -28,7 +28,7 @@ export default function Session() {
 
 
     if (assentos.length > 0) {
-        console.log(numPoltrona)
+        
         return (
             <>
                 <ion-icon onClick={() => navigate(-1)}  

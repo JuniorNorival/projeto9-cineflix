@@ -24,7 +24,6 @@ export default function Movie() {
     const sessions = movie.days || []
 
     if (sessions.length > 0) {
-        console.log(sessions)
 
         return (
             <>
