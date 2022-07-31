@@ -3,6 +3,7 @@ import Home from "../Home/Home"
 import Movie from "../Movie/Movie";
 import Session from "../Session/Session";
 import Sucesso from '../Sucesso/Sucesso'
+import Voltar from "../Voltar/Voltar";
 import "./reset.css"
 import './style.css'
 
@@ -15,6 +16,7 @@ export default function App() {
                 <h1>CINEFLIX</h1>
               
             </div>
+            <Voltar />
             <Routes >
                 <Route path='/' element={<Home />} />
                 <Route path='/sessoes/:idFilme' element={<Movie />} />

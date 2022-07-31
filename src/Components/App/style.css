@@ -37,8 +37,7 @@ ion-icon {
 }
 
 ion-icon:hover {
-    background-color: #728494;
-    box-shadow: 0 5px 0 #e5e6e7;
+   
     cursor: pointer
 }
 

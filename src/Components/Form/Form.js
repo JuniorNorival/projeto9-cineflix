@@ -65,7 +65,7 @@ export default function Form({ poltrona, sessao, numPoltrona }) {
                     value={name}
                     required />
                 <p>CPF do comprador:</p>
-                <Input type='text' id="cpf" name="cpf"
+                <Input type='number' id="cpf" name="cpf"
                     placeholder="Digite seu cpf..."
                     onChange={e => setCpf(e.target.value)}
                     value={cpf}

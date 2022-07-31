@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react"
-import { useParams, Link, useNavigate } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import axios from 'axios'
 import styled from "styled-components"
 import Title from "../Title/Title"
+import Footer from "../Footer/Footer"
 
 export default function Movie() {
 
     const [movie, setmovie] = useState([])
-    const navigate = useNavigate();
     const { idFilme } = useParams();
-
 
     const promisse = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/movies/${idFilme}/showtimes`)
 
@@ -27,8 +26,6 @@ export default function Movie() {
 
         return (
             <>
-                <ion-icon onClick={() => navigate(-1)}
-                    name="arrow-back-circle-sharp"></ion-icon>
                 <Title text='Selecione o horário' />
                 <Horarios>
                     {sessions.map((session) => {
@@ -36,27 +33,17 @@ export default function Movie() {
                         return (
                             <Sessoes key={session.id}>
                                 <p>{session.weekday} - {session.date}</p>
-
                                 {times.map((hour) =>
                                     <Link key={hour.id} to={`/assentos/${hour.id}`}>
                                         <Botao>{hour.name}</Botao>
                                     </Link>
                                 )}
-
                             </Sessoes>
                         )
                     }
                     )}
                 </Horarios>
-
-                <Footer>
-                    <DataFooter>
-                        <Imgbox>
-                            <img src={movie.posterURL} alt="filme" />
-                        </Imgbox>
-                        <p>{movie.title}</p>
-                    </DataFooter>
-                </Footer>
+                <Footer movie={movie} />
             </>
         )
     } else {
@@ -117,48 +104,3 @@ const Botao = styled.button`
 
 `
 
-const Footer = styled.div`
-    width: 100vw;
-    height: 117px;
-    left: 0px;
-    bottom: 0px;
-    position: fixed;
-    background: #DFE6ED;
-    border: 1px solid #9EADBA;
-    display: flex;
-    align-items: center;
-
-    
-
-`
-const DataFooter = styled.div`
-    display: flex;
-    align-items: center;
-    
-    
-p{
-    font-weight: 400;
-    font-size: 26px;
-    line-height: 30px;
-    color: #293845;
-    
-
-}
-
-`
-const Imgbox = styled.div`
- width: 64px;
-    height: 89px;
-    background: #FFFFFF;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 2px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 10px;
-
-img {
-    width: 48px;
-    height: 72px;
-}
-`

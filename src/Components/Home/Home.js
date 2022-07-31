@@ -42,7 +42,7 @@ const Movies = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     width:100vw;
-
+    
 `
 const Movie = styled.div`
     width: 145px;
